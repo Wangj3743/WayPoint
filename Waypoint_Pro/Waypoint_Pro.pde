@@ -1,4 +1,10 @@
 import g4p_controls.*;
+PImage Battery;
+PImage LED_Light;
+PImage Capacitor;
+PImage Voltage_Regulator;
+PImage Transistor;
+PImage Resistor;
 
 
 void setup() {

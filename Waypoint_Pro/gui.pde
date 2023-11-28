@@ -26,6 +26,14 @@ public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:9459
   println("button2 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button2:945949:
 
+public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:263551:
+  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button3:263551:
+
+public void button4_click1(GButton source, GEvent event) { //_CODE_:button4:791374:
+  println("button4 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button4:791374:
+
 
 
 // Create all the GUI controls. 
@@ -39,12 +47,18 @@ public void createGUI(){
   Components.setItems(loadStrings("list_574480"), 0);
   Components.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   Components.addEventHandler(this, "dropList1_click");
-  button1 = new GButton(this, 91, 317, 80, 30);
+  button1 = new GButton(this, 22, 316, 80, 30);
   button1.setText("RESET");
   button1.addEventHandler(this, "button1_click1");
-  button2 = new GButton(this, 276, 317, 80, 30);
+  button2 = new GButton(this, 119, 316, 80, 30);
   button2.setText("SAVE");
   button2.addEventHandler(this, "button2_click1");
+  button3 = new GButton(this, 215, 315, 80, 30);
+  button3.setText("DELETE");
+  button3.addEventHandler(this, "button3_click1");
+  button4 = new GButton(this, 310, 314, 80, 30);
+  button4.setText("ROTATE");
+  button4.addEventHandler(this, "button4_click1");
 }
 
 // Variable declarations 
@@ -52,3 +66,5 @@ public void createGUI(){
 GDropList Components; 
 GButton button1; 
 GButton button2; 
+GButton button3; 
+GButton button4; 
