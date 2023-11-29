@@ -4,6 +4,8 @@ class Component{
 PVector<float> pos,pad;
 float val;
 String type;
+PImage img;
+Boolean visible;
 
 
 
@@ -13,23 +15,44 @@ this.type = t;
 ths.pos.x = x;
 this.pos.y = y;
 this.val = v;
+visible = true;
+
+if (type = Battery)
+img = Battery
+if (type = Resistor)
+img = Resistor
+if (type = Capacitor)
+img = Capacitor
+if (type = LED_Light)
+img = LED_Light
+if (type = Voltage_Regulator)
+img = Voltage_Regulator
 
 
 //constrcutor
 
 
 //methods
-  void drawComponent(){
-  image(this.type, this.pos.x, this.pos.y);
-  }
-  void createPadding()
-  void moveComponent()
-  void rotateComponent()
-  void DeleteComponent()
-  
-  void draw(){
 
-}
+  void drawComponent(){
+  if (visible = true){
+  image(this.img, this.pos.x, this.pos.y);
+  }
+  void DeleteComponent(){
+  visible = false;
+  }
+
+  void createPadding()               
+  void moveComponent()
+
+  void rotateComponent(float radian){
+    this.DeleteComponent();
+    rotate(PI/2.0);  
+    this.drawComponent();
+  }
+
+
+ 
   
   
   
