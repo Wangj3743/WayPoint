@@ -61,6 +61,15 @@ this.drawComponent();
 
 }
 
+void deselect(){
+this.x = this.x;
+this.y = this.y;
+this.deleteComponent;
+tint(255,255);
+visible = true;
+this.drawComponent();
+
+}
 
  
   
