@@ -38,7 +38,7 @@ img = Voltage_Regulator
   if (visible = true){
   image(this.img, this.pos.x, this.pos.y);
   }
-  void DeleteComponent(){
+  void deleteComponent(){
   visible = false;
   }
 
@@ -46,10 +46,20 @@ img = Voltage_Regulator
   void moveComponent()
 
   void rotateComponent(float radian){
-    this.DeleteComponent();
+    this.deleteComponent();
     rotate(PI/2.0);  
     this.drawComponent();
   }
+
+void select(){
+this.x = mouseX;
+this.y - mouseY;
+this.deleteComponent;
+tint(255, 126);
+visible = true;
+this.drawComponent();
+
+}
 
 
  
