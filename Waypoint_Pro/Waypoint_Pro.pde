@@ -18,10 +18,10 @@ ArrayList<Component> compsList = new ArrayList<Component> ();
 // if user chooses to...
 boolean createTrack = false;
 
-// temporary
+// temporary values 
 float temp_x1, temp_y1, temp_x2, temp_y2;
 
-// images
+// component images 
 PImage Battery;
 PImage LED_Light;
 PImage Capacitor;
@@ -34,7 +34,7 @@ void setup() {
   size(900, 900);
   shapeMode(CENTER);
   
-  // path of images
+  // path of component images
   Battery = loadImage("images/Battery.png");
   LED_Light = loadImage("images/LED.png");
   Capacitor = loadImage("images/Capacitor.png");
@@ -42,7 +42,7 @@ void setup() {
   Resistor = loadImage("images/Resistor.png");
   Voltage_Regulator = loadImage("images/Voltage_Regulator.png");
 
-  // size of images
+  // size of component images
   Battery.resize(30,26);
   LED_Light.resize(10,23);
   Capacitor.resize(25,25);
