@@ -1,26 +1,31 @@
 class Track {
   // fields
-  float xPos1, yPos1, xPos2, yPos2;  
-  ArrayList<Nodes> nodes;
+  float x1, y1, x2, y2;  
+  boolean trackSelected = false;
+  Node node1, node2;
   
   
   // constructor
-  Track(float x1, float y1, float x2, float y2) {
-    this.xPos1 = x1;
-    this.yPos1 = y1;
-    this.xPos2 = x2;
-    this.yPos2 = y2;
+  Track(float xPos1, float yPos1, float xPos2, float yPos2) {
+    this.x1 = xPos1;
+    this.y1 = yPos1;
+    this.x2 = xPos2;
+    this.y2 = yPos2;
+    
+    // create nodes
+    node1 = new Node(this.x1, this.y1);
+    node2 = new Node(this.x2, this.y2);
+    
+    drawTrack();
   }
   
   
   // methods
-  void createNodes(float x1, float y1, float x2, float y2) {  // beginning & ending points
-    nodes.add(Node node1);
-    createNode(x1, y1, x2, y2);
-  }
-
-  void drawLine() {
-    
+  void drawTrack() {
+    // draw line
+    stroke(trackColor);
+    strokeWeight(trackWeight);
+    line(this.x1, this.y1, this.x2, this.y2);
   }
   
   void changeColor() {
@@ -28,6 +33,7 @@ class Track {
   }
   
   void deleteTrack() {
-    deleteNode();
+    node1.deleteNode();
+    node2.deleteNode();
   }
 }
