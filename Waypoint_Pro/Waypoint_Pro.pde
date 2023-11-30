@@ -107,7 +107,7 @@ void draw() {
     //temp_x2 = opp;
     //temp_y2 = adj;
     
-    stroke(trackColor);
+    stroke(trackColor+255);
     strokeWeight(trackWeight);
     line(temp_x1, temp_y1, temp_x2, temp_y2); // preview line
   }
