@@ -17,6 +17,9 @@ ArrayList<Component> compsList = new ArrayList<Component> ();
 
 // if user chooses to...
 boolean createTrack = false;
+boolean createComponent = true;
+boolean selectObject = false;
+
 
 // temporary values 
 float temp_x1, temp_y1, temp_x2, temp_y2;
@@ -28,7 +31,9 @@ PImage Capacitor;
 PImage Voltage_Regulator;
 PImage Transistor;
 PImage Resistor;
+int magn;
 
+Component Resistor1;
 
 void setup() {
   size(900, 900);
@@ -43,14 +48,16 @@ void setup() {
   Voltage_Regulator = loadImage("images/Voltage_Regulator.png");
 
   // size of component images
-  Battery.resize(30,26);
-  LED_Light.resize(10,23);
-  Capacitor.resize(25,25);
-  Transistor.resize(34,12);
-  Resistor.resize(25,25);
-  Voltage_Regulator.resize(19,23);
+  magn = 3;
+  Battery.resize(magn*30,magn*26);
+  LED_Light.resize(magn*10,magn*23);
+  Capacitor.resize(magn*25,magn*25);
+  Transistor.resize(magn*34,magn*12);
+  Resistor.resize(magn*25,magn*25);
+  Voltage_Regulator.resize(magn*19,magn*23);
   
-  createTrack = true; // remove in final
+  createTrack = false; // removefor testing;. in the final version
+  Resistor1 = new Component("Resistor", 9.0, float(mouseX),float(mouseY)); 
 }
 
 
@@ -69,6 +76,11 @@ void draw() {
   // draw tracks
   for (Track T: tracksList) {
     T.drawTrack();
+  }
+  
+  // draw components
+  for (Component C: compsList) {
+    C.drawComponent();
   }
   
   if (mousePressed == true && createTrack == true) { // user selects to createTrack
@@ -111,6 +123,10 @@ void draw() {
     strokeWeight(trackWeight);
     line(temp_x1, temp_y1, temp_x2, temp_y2); // preview line
   }
+  
+  if  (mousePressed == false && createComponent == true) { 
+    Resistor1.previewComponent();
+  }
 }
 
 
@@ -119,12 +135,17 @@ void mousePressed() {
     temp_x1 = mouseX;
     temp_y1 = mouseY;
   }
+  if (createComponent == true) {
+    println(mouseX,mouseY);
+    createComponent = false;
+    compsList.add(Resistor1);
+  }
 }
 
 
 void mouseReleased() {
    if (createTrack == true) { // user selects to createTrack
-     //createTrack = false; // uncomment in final
+     createTrack = false;
      tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2));
    }
    temp_x1 = 0;
