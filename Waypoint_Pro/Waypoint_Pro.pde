@@ -133,11 +133,11 @@ void mousePressed() {
   }
 
   if (createComponent == true) {
-<<<<<<< HEAD
+
     println(Resistor1.pos);
-=======
+
     println(mouseX, mouseY);
->>>>>>> bad310db80058be21bffa4813b88d13af7099600
+
     createComponent = false;
     float temp_compx = float(mouseX);
     float temp_compy= float(mouseY);
