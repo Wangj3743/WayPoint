@@ -17,9 +17,9 @@ ArrayList<Track> tracksList = new ArrayList<Track> ();
 ArrayList<Component> compsList = new ArrayList<Component> ();
 
 // if user chooses to...
-boolean createTrack = true;
-boolean createComponent = true;
-boolean selectObject = false;
+boolean createTrack;
+boolean createComponent;
+boolean selectObject;
 
 
 // temporary values
@@ -40,6 +40,8 @@ void setup() {
   size(900, 900);
   shapeMode(CENTER);
 
+
+  createGUI();
   // path of component images
   Battery = loadImage("images/Battery.png");
   LED_Light = loadImage("images/LED.png");
@@ -57,7 +59,7 @@ void setup() {
   Resistor.resize(magn*25, magn*25);
   Voltage_Regulator.resize(magn*19, magn*23);
 
-  createTrack = true; // remove for testing in the final version
+   // remove for testing in the final version
   Resistor1 = new Component("Resistor", 9.0, float(mouseX),float(mouseY));
 }
 
