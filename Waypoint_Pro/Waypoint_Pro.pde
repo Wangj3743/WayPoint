@@ -136,9 +136,14 @@ void mousePressed() {
     temp_y1 = mouseY;
   }
   if (createComponent == true) {
-    println(mouseX,mouseY);
+    println(Resistor1.pos);
     createComponent = false;
-    compsList.add(Resistor1);
+    float temp_compx = float(mouseX);
+    float temp_compy= float(mouseY);
+    Component Resistor1_drawn = new Component("Resistor", 9.0, temp_compx,temp_compy);
+    compsList.add(Resistor1_drawn);
+    
+    println("why",Resistor1.pos);
   }
 }
 
