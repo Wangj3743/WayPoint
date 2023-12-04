@@ -15,7 +15,6 @@ float trackWeight = 5;
 // tracks and component lists
 ArrayList<Track> tracksList = new ArrayList<Track> ();
 ArrayList<Component> compsList = new ArrayList<Component> ();
-int i = 0;
 String[] avaCompList = {"Battery", "LED_Light", "Capacitor", "Transistor", "Resistor", "Voltage_Regulator"};
 float tempVal = 0.0;//a float steod temporaryly for tje text field
 //ArrayList<String> avaCompList  = new ArrayList<String>("Battery","LED_Light","Capacitor","Transistor","Resistor","Voltage_Regulator");
@@ -28,6 +27,7 @@ boolean selectObject;
 
 // temporary values
 float temp_x1, temp_y1, temp_x2, temp_y2;
+int temp_int = 0;
 
 // component images
 PImage Battery;

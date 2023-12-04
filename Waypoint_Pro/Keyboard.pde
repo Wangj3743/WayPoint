@@ -1,12 +1,16 @@
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == UP) {
-      i = i+1;
+      temp_int = temp_int+1;
     } else if (keyCode == DOWN) {
-      i = i-1;
+      temp_int = temp_int-1;
     } 
-  } 
+  }   
   
-  component_chosenText = avaCompList[abs(i)%5];
+  //if (key == "r") {
+  
+  //}
+  
+  component_chosenText = avaCompList[abs(temp_int)%5];
   println(component_chosenText);
 }
