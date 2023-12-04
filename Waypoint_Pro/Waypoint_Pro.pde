@@ -15,6 +15,10 @@ float trackWeight = 5;
 // tracks and component lists
 ArrayList<Track> tracksList = new ArrayList<Track> ();
 ArrayList<Component> compsList = new ArrayList<Component> ();
+int i = 0;
+String[] avaCompList = {"Battery", "LED_Light", "Capacitor", "Transistor", "Resistor", "Voltage_Regulator"};
+float tempVal = 0.0;//a float steod temporaryly for tje text field
+//ArrayList<String> avaCompList  = new ArrayList<String>("Battery","LED_Light","Capacitor","Transistor","Resistor","Voltage_Regulator");
 
 // if user chooses to...
 boolean createTrack;
@@ -34,8 +38,9 @@ PImage Transistor;
 PImage Resistor;
 int magn;
 
-Component Resistor1;
 
+Component component_chosen;
+String component_chosenText = "Battery";//default ;
 void setup() {
   size(900, 900);
   shapeMode(CENTER);
@@ -59,12 +64,13 @@ void setup() {
   Resistor.resize(magn*25, magn*25);
   Voltage_Regulator.resize(magn*19, magn*23);
 
-   // remove for testing in the final version
-  Resistor1 = new Component("Resistor", 9.0, float(mouseX),float(mouseY));
+  // remove for testing in the final version
+  // component_chosen = new Component(component_chosenText, 0.0, float(mouseX),float(mouseY));
 }
 
 
 void draw() {
+  component_chosen = new Component(component_chosenText, tempVal, float(mouseX), float(mouseY));
   background(204);
 
   // draw guide dots
@@ -82,8 +88,8 @@ void draw() {
     T.drawTrack();
   }
 
-   //draw components
-  for (Component C: compsList) {
+  //draw components
+  for (Component C : compsList) {
     C.drawComponent();
   }
 
@@ -123,7 +129,7 @@ void draw() {
 
 
   if  (mousePressed == false && createComponent == true) {
-    Resistor1.previewComponent();
+    component_chosen.previewComponent();
   }
 }
 
@@ -136,24 +142,28 @@ void mousePressed() {
 
   if (createComponent == true) {
 
-    println(Resistor1.pos);
+    println(component_chosen.pos);
 
-    println(mouseX, mouseY);
-
-    createComponent = false;
     float temp_compx = float(mouseX);
     float temp_compy= float(mouseY);
-    Component Resistor1_drawn = new Component("Resistor", 9.0, temp_compx,temp_compy);
-    compsList.add(Resistor1_drawn);
-    
-    println("why",Resistor1.pos);
+    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy);
+    compsList.add(component_chosen_drawn);
+
+    println("why", component_chosen.pos);
+  }
+  if (selectObject == true) {
+    for ( Component C : compsList) {
+      if (dist(mouseX, mouseY, C.pos.x, C.pos.y) < 50) {
+        //do something fun
+      }
+    }
   }
 }
 
 
 void mouseReleased() {
   if (createTrack == true) { // user selects to createTrack
-    createTrack = false;
+
     tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2));
   }
   temp_x1 = 0;

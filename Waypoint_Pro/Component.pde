@@ -24,14 +24,13 @@ class Component {
       this.img = Resistor;
     if (type == "Capacitor") {
       this.img = Capacitor;
-      println("aaaaaaaaaaaa");
-      println("cap:", Capacitor);
-      println("img:", this.img);
     }
     if (type == "LED_Light")
       this.img = LED_Light;
     if (type == "Voltage_Regulator")
       this.img = Voltage_Regulator;
+    if (type == "Transistor")
+      this.img = Transistor;
   }
 
 
@@ -43,9 +42,11 @@ class Component {
     image(this.img, mouseX, mouseY);
   }
   void drawComponent() {
-    println(this.pos);
+
     if (visible = true) {
       image(this.img, this.pos.x, this.pos.y);
+      textSize(20);
+      text(this.val, this.pos.x, this.pos.y);
     }
   }
 
@@ -67,10 +68,11 @@ class Component {
   void select() {
     this.pos.x = mouseX;
     this.pos.y = mouseY;
-    this.deleteComponent();
-    tint(255, 126);
-    visible = true;
-    this.drawComponent();
+    circle(this.pos.x, this.pos.y, 20);
+    //this.deleteComponent();
+    //tint(255, 126);
+    //visible = true;
+    //this.drawComponent();
   }
 
   void deselect() {
