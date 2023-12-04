@@ -6,17 +6,20 @@ class Component {
   String type;
   PImage img;
   Boolean visible;
-
+  float rotation;
+  boolean select;
 
   //component
-  Component(String t, float v, float z, float r) {
+  Component(String t, float v, float z, float r,float rota, boolean sel) {
     this.type = t;
     this.pos.x = z;
     this.pos.y = r;
     this.val = v;
+    this.rotation = rota;
+    this.select = sel;
 
     visible = true;
-
+//deselect after, rotate is always 0, 
     if (type == "Battery") {
       this.img = Battery;
     }
@@ -61,6 +64,7 @@ class Component {
 
   void rotateComponent() {
     this.deleteComponent();
+    //rotate always set to 0, set global varible fo select
     rotate(PI/2.0);
     this.drawComponent();
   }

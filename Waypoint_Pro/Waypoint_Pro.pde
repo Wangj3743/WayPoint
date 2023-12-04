@@ -9,6 +9,7 @@ float gridDotSize = 2;
 
 color trackColor = color(255, 0, 0);
 float trackWeight = 5;
+float temp_rot = 0.0;
 
 
 // global variables
@@ -23,6 +24,7 @@ float tempVal = 0.0;//a float steod temporaryly for tje text field
 boolean createTrack;
 boolean createComponent;
 boolean selectObject;
+boolean selectTrueorNot = false;
 
 
 // temporary values
@@ -70,7 +72,7 @@ void setup() {
 
 
 void draw() {
-  component_chosen = new Component(component_chosenText, tempVal, float(mouseX), float(mouseY));
+  component_chosen = new Component(component_chosenText, tempVal, float(mouseX), float(mouseY),temp_rot,selectTrueorNot);
   background(204);
 
   // draw guide dots
@@ -146,7 +148,7 @@ void mousePressed() {
 
     float temp_compx = float(mouseX);
     float temp_compy= float(mouseY);
-    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy);
+    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy,temp_rot,false);
     compsList.add(component_chosen_drawn);
 
     println("why", component_chosen.pos);
