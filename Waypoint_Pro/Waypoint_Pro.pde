@@ -9,7 +9,7 @@ float gridDotSize = 2;
 
 color trackColor = color(255, 0, 0);
 float trackWeight = 5;
-float temp_rot = 0.0;
+float temp_rot = 4.0;
 
 
 // global variables
@@ -24,13 +24,18 @@ float tempVal = 0.0;//a float steod temporaryly for tje text field
 boolean createTrack;
 boolean createComponent;
 boolean selectObject;
-boolean selectTrueorNot = false;
+boolean selectComponent = false;
+boolean selectTrack = false;
 
 
 // temporary values
 float temp_x1, temp_y1, temp_x2, temp_y2;
 int temp_int = 0;
+float zoom_sensitivity = 0.04;
 
+void mouseWheel(MouseEvent event){
+zoom = (zoom - event.getCount()*zoom_sensitivity);
+}
 // component images
 PImage Battery;
 PImage LED_Light;
@@ -39,11 +44,14 @@ PImage Voltage_Regulator;
 PImage Transistor;
 PImage Resistor;
 int magn;
-
-
+float zoom = 2;
+Track trackSelected;
+Component componentSelected;
 Component component_chosen;
 String component_chosenText = "Battery";//default ;
 void setup() {
+  
+  imageMode(CENTER);
   size(900, 900);
   shapeMode(CENTER);
 
@@ -72,14 +80,16 @@ void setup() {
 
 
 void draw() {
-  component_chosen = new Component(component_chosenText, tempVal, float(mouseX), float(mouseY),temp_rot,selectTrueorNot);
+  scale(zoom);
+
+  component_chosen = new Component(component_chosenText, tempVal, float(mouseX), float(mouseY),temp_rot,selectComponent);
   background(204);
 
   // draw guide dots
   strokeWeight(1);
   stroke(0);
-  for (int i=0; i<width; i+=gridDotSpacing) {
-    for (int j=0; j<height; j+=gridDotSpacing) {
+  for (int i=0; i<5000; i+=gridDotSpacing) {
+    for (int j=0; j<5000; j+=gridDotSpacing) {
       circle(i, j, gridDotSize);
     }
   }
@@ -92,7 +102,9 @@ void draw() {
 
   //draw components
   for (Component C : compsList) {
+    
     C.drawComponent();
+    
   }
 
 
@@ -148,28 +160,69 @@ void mousePressed() {
 
     float temp_compx = float(mouseX);
     float temp_compy= float(mouseY);
-    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy,temp_rot,false);
+    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy,component_chosen.rotation,false);
     compsList.add(component_chosen_drawn);
 
     println("why", component_chosen.pos);
   }
-  if (selectObject == true) {
-    for ( Component C : compsList) {
+  
+  for ( Component C : compsList) {
+     
       if (dist(mouseX, mouseY, C.pos.x, C.pos.y) < 50) {
-        //do something fun
+        println(C,"is been selected");
+        C.select = true;
+        componentSelected = C;
       }
     }
+   for (Track T : tracksList) {
+
+     
+     float m = (T.y2-T.y1)/(T.x2-T.x1);
+     float b = m * T.x2 - T.y2; 
+     
+     float d = abs(mouseX*m-mouseY+b)/(sqrt(m*m+1));
+      
+     if (d<20 ){ //and its in the box
+     println(T,"is been selected");
+     T.select = true;
+     trackSelected = T;
+     }
+     
+     
+     
+
+   }
   }
-}
+  
+  
+
 
 
 void mouseReleased() {
   if (createTrack == true) { // user selects to createTrack
 
-    tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2));
+    tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2,selectTrack));
   }
   temp_x1 = 0;
   temp_y1 = 0;
   temp_x2 = 0;
   temp_y2 = 0;
+}
+
+
+void mouseDragged() {
+    if (selectObject == true) {
+    
+    
+    
+
+      if (componentSelected.select == true){
+    componentSelected.pos.x = mouseX;
+    componentSelected.pos.y = mouseY;
+    
+    
+    
+  }
+    
+  }
 }

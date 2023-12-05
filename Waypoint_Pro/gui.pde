@@ -39,6 +39,15 @@ public void button3_click1(GButton source, GEvent event) { //_CODE_:select:24947
   selectObject = true;
 } //_CODE_:select:249474:
 
+public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:
+  println("savebutton - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:savebutton:300975:
+
+public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945:
+  println("slider - GSlider >> GEvent." + event + " @ " + millis());
+  zoom = slider.getValueF();
+} //_CODE_:slider:777945:
+
 
 
 // Create all the GUI controls. 
@@ -52,15 +61,23 @@ public void createGUI(){
   window1.noLoop();
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw1");
-  component = new GButton(window1, 46, 97, 80, 30);
+  component = new GButton(window1, 39, 36, 80, 30);
   component.setText("component");
   component.addEventHandler(this, "component_click");
-  track = new GButton(window1, 45, 156, 80, 30);
+  track = new GButton(window1, 40, 107, 80, 30);
   track.setText("Track");
   track.addEventHandler(this, "track_click");
-  select = new GButton(window1, 46, 213, 80, 30);
+  select = new GButton(window1, 38, 181, 80, 30);
   select.setText("select");
   select.addEventHandler(this, "button3_click1");
+  savebutton = new GButton(window1, 39, 251, 80, 30);
+  savebutton.setText("save");
+  savebutton.addEventHandler(this, "button1_click1");
+  slider = new GSlider(window1, 162, 94, 100, 40, 10.0);
+  slider.setLimits(0.5, 0.5, 2.0);
+  slider.setNumberFormat(G4P.DECIMAL, 2);
+  slider.setOpaque(false);
+  slider.addEventHandler(this, "slider_change");
   window1.loop();
 }
 
@@ -70,3 +87,5 @@ GWindow window1;
 GButton component; 
 GButton track; 
 GButton select; 
+GButton savebutton; 
+GSlider slider; 
