@@ -165,6 +165,7 @@ void mousePressed() {
 
     println("why", component_chosen.pos);
   }
+  if (selectObject == true) {
   
   for ( Component C : compsList) {
      
@@ -176,20 +177,26 @@ void mousePressed() {
     }
    for (Track T : tracksList) {
 
-     
-     float m = (T.y2-T.y1)/(T.x2-T.x1);
-     float b = m * T.x2 - T.y2; 
+    
+    
+     float m = round((T.y2-T.y1)/(T.x2-T.x1));
+     print(T.x1,T.y1,T.x2,T.y2,m);
+     float b =-( m * T.x2 - T.y2); 
      
      float d = abs(mouseX*m-mouseY+b)/(sqrt(m*m+1));
-      
-     if (d<20 ){ //and its in the box
+     
+     stroke(204, 102, 0);
+     line(0,0+b,300,m*300+b);
+     
+     if (d<20  && mouseX <(T.x1+T.x2)/2.0 && mouseY <(T.y1+T.y2)/2.0) { //and its in the box
      println(T,"is been selected");
      T.select = true;
      trackSelected = T;
+     T.col = color(255,255,255);
      }
      
      
-     
+   }
 
    }
   }
@@ -201,7 +208,7 @@ void mousePressed() {
 void mouseReleased() {
   if (createTrack == true) { // user selects to createTrack
 
-    tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2,selectTrack));
+    tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2,selectTrack,trackColor));
   }
   temp_x1 = 0;
   temp_y1 = 0;
