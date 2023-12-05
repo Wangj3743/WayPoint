@@ -3,14 +3,16 @@ class Track {
   float x1, y1, x2, y2;  
   boolean trackSelected = false;
   Node node1, node2;
+  boolean select;
   
   
   // constructor
-  Track(float xPos1, float yPos1, float xPos2, float yPos2) {
+  Track(float xPos1, float yPos1, float xPos2, float yPos2,boolean sel) {
     this.x1 = xPos1;
     this.y1 = yPos1;
     this.x2 = xPos2;
     this.y2 = yPos2;
+    this.select = sel;
     
     // create nodes
     node1 = new Node(this.x1, this.y1);

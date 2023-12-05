@@ -42,15 +42,27 @@ class Component {
 
   //methods
   void previewComponent() {
+     imageMode(CENTER);
+     
+     //rotate(PI/3.0);
     image(this.img, mouseX, mouseY);
+     //rotate(-PI/3.0);
+    
   }
   void drawComponent() {
 
+
     if (visible = true) {
+      imageMode(CENTER);
+
+     //rotate(PI/3.0);
       image(this.img, this.pos.x, this.pos.y);
       textSize(20);
       text(this.val, this.pos.x, this.pos.y);
+     //rotate(-PI/3.0);
+    
     }
+
   }
 
   void deleteComponent() {
@@ -62,12 +74,7 @@ class Component {
   void moveComponent() {
   }
 
-  void rotateComponent() {
-    this.deleteComponent();
-    //rotate always set to 0, set global varible fo select
-    rotate(PI/2.0);
-    this.drawComponent();
-  }
+
 
   void select() {
     this.pos.x = mouseX;
