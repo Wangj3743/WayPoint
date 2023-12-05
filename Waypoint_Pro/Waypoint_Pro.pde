@@ -135,7 +135,6 @@ void draw() {
 
     temp_x2 = adj+(temp_x1);      // new x value of point 2
     temp_y2 = -opp+(temp_y1);    // new x value of point 2
-
     stroke(trackColor+255);
     strokeWeight(trackWeight);
     line(temp_x1, temp_y1, temp_x2, temp_y2); // preview line
@@ -200,8 +199,9 @@ void mousePressed() {
 
 void mouseReleased() {
   if (createTrack == true) { // user selects to createTrack
-
-    tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2,selectTrack));
+    if (temp_x2 != 0 && temp_y2 != 0) {
+      tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack));
+    } 
   }
   temp_x1 = 0;
   temp_y1 = 0;
