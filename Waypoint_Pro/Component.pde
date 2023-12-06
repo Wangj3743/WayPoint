@@ -44,9 +44,9 @@ class Component {
   void previewComponent() {
      imageMode(CENTER);
      
-     //rotate(PI/3.0);
-    image(this.img, mouseX, mouseY);
-     //rotate(-PI/3.0);
+  
+    image(this.img, mouseX/zoom, mouseY/zoom);
+     
     
   }
   void drawComponent() {
@@ -55,12 +55,17 @@ class Component {
     if (visible = true) {
       imageMode(CENTER);
 
-     //rotate(PI/3.0);
+     
       image(this.img, this.pos.x, this.pos.y);
       textSize(20);
       text(this.val, this.pos.x, this.pos.y);
-     //rotate(-PI/3.0);
+     
     
+    
+    
+    if (this.select == true){
+      circle(this.pos.x,this.pos.y,20);
+    }
     }
 
   }
@@ -77,8 +82,8 @@ class Component {
 
 
   void select() {
-    this.pos.x = mouseX;
-    this.pos.y = mouseY;
+    this.pos.x = mouseX/zoom;
+    this.pos.y = mouseY/zoom;
     circle(this.pos.x, this.pos.y, 20);
     //this.deleteComponent();
     //tint(255, 126);
