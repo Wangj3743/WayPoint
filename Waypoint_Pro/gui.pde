@@ -50,6 +50,8 @@ public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945
 
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:562215:
   println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
+  print(textfield1.getText());
+  tempVal = float(textfield1.getText());
 } //_CODE_:textfield1:562215:
 
 
@@ -78,7 +80,7 @@ public void createGUI(){
   savebutton.setText("save");
   savebutton.addEventHandler(this, "button1_click1");
   slider = new GSlider(window1, 162, 94, 100, 40, 10.0);
-  slider.setLimits(1.0, 0.5, 2.0);
+  slider.setLimits(2.0, 0.5, 2.0);
   slider.setNumberFormat(G4P.DECIMAL, 2);
   slider.setOpaque(false);
   slider.addEventHandler(this, "slider_change");
