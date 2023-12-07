@@ -32,10 +32,12 @@ boolean selectTrack = false;
 float temp_x1, temp_y1, temp_x2, temp_y2;
 int temp_int = 0;
 float zoom_sensitivity = 0.04;
-
-void mouseWheel(MouseEvent event){
-zoom = (zoom - event.getCount()*zoom_sensitivity);
+float zoom = 1;
+void mouseWheel(MouseEvent event) {
+  zoom = (zoom - event.getCount()*zoom_sensitivity);
 }
+
+
 // component images
 PImage Battery;
 PImage LED_Light;
@@ -44,7 +46,7 @@ PImage Voltage_Regulator;
 PImage Transistor;
 PImage Resistor;
 int magn;
-float zoom = 2;
+
 Track trackSelected;
 Component componentSelected;
 Component component_chosen;
@@ -89,7 +91,7 @@ void setup() {
 void draw() {
   scale(zoom);
 
-  component_chosen = new Component(component_chosenText, tempVal, float(mouseX), float(mouseY),temp_rot,selectComponent);
+  component_chosen = new Component(component_chosenText, tempVal, float(mouseX)/zoom, float(mouseY)/zoom, temp_rot, selectComponent);
   background(204);
 
   // draw guide dots
@@ -109,16 +111,15 @@ void draw() {
 
   //draw components
   for (Component C : compsList) {
-    
+
     C.drawComponent();
-    
   }
 
 
   // user selects to createTrack
   if (mousePressed == true && createTrack == true) {
-    temp_x2 = mouseX;
-    temp_y2 = mouseY;
+    temp_x2 = mouseX/zoom;
+    temp_y2 = mouseY/zoom;
 
     float h = dist(temp_x1, temp_y1, temp_x2, temp_y2);
     float RAA = atan2(abs(temp_y2-temp_y1), abs(temp_x2-temp_x1));
@@ -155,56 +156,65 @@ void draw() {
 
 
 void mousePressed() {
+  scale(zoom);
+
   if (createTrack == true) { // user selects to createTrack
-    temp_x1 = mouseX;
-    temp_y1 = mouseY;
+    temp_x1 = mouseX/zoom;
+    temp_y1 = mouseY/zoom;
   }
 
   if (createComponent == true) {
 
-    println(component_chosen.pos);
 
-    float temp_compx = float(mouseX);
-    float temp_compy= float(mouseY);
-    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy,component_chosen.rotation,false);
+
+    float temp_compx = float(mouseX)/zoom;
+    float temp_compy= float(mouseY)/zoom;
+    Component component_chosen_drawn = new Component(component_chosenText, component_chosen.val, temp_compx, temp_compy, component_chosen.rotation, false);
     compsList.add(component_chosen_drawn);
 
     println("why", component_chosen.pos);
   }
-  
-  for ( Component C : compsList) {
-     
-      if (dist(mouseX, mouseY, C.pos.x, C.pos.y) < 50) {
-        println(C,"is been selected");
+  if (selectObject == true) {
+
+    for ( Component C : compsList) {
+
+      if (dist(mouseX/zoom, mouseY/zoom, C.pos.x, C.pos.y) < 50) {
+        println(C, "is been selected");
         C.select = true;
         componentSelected = C;
       }
     }
-   for (Track T : tracksList) {
+    for (Track T : tracksList) {
 
-     
-     float m = (T.y2-T.y1)/(T.x2-T.x1);
-     float b = m * T.x2 - T.y2; 
-     
-     float d = abs(mouseX*m-mouseY+b)/(sqrt(m*m+1));
-      
-     if (d<20 ){ //and its in the box
-     println(T,"is been selected");
-     T.select = true;
-     trackSelected = T;
-     }
-     
-     
-     
 
-   }
+
+      float m = round((T.y2-T.y1)/(T.x2-T.x1));
+      print(T.x1, T.y1, T.x2, T.y2, m);
+      float b =-( m * T.x2 - T.y2);
+
+      float d = abs(mouseX*m/zoom-mouseY/zoom+b)/(sqrt(m*m+1));
+
+
+      line(T.x1,m*T.x1+b,T.x2,m*T.x2+b);
+      float distX = abs(T.x1-T.x2);
+      float distY = abs(T.y1-T.y2);
+      if (abs(d)<40  && mouseX/zoom <=(T.x1+T.x2)/2.0 + distX+20 && mouseX/zoom>=(T.x1+T.x2)/2.0 - distX-20 && mouseY/zoom <=(T.y1+T.y2)/2.0+distY+20 && mouseY/zoom >=(T.y1+T.y2)/2.0-distY-20){ //and its in the box
+        println(T, "is been selected");
+        T.select = true;
+        trackSelected = T;
+        T.col = color(255, 255, 255);
+      }
+    }
   }
-  
-  
+}
+
+
 
 
 
 void mouseReleased() {
+  scale(zoom);
+
   if (createTrack == true) { // user selects to createTrack
     if (temp_x2 != 0 && temp_y2 != 0) {
       tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack));
@@ -219,18 +229,17 @@ void mouseReleased() {
 
 
 void mouseDragged() {
-    if (selectObject == true) {
-    
-    
-    
+  scale(zoom);
 
-      if (componentSelected.select == true){
-    componentSelected.pos.x = mouseX;
-    componentSelected.pos.y = mouseY;
-    
-    
-    
-  }
-    
+  if (selectObject == true) {
+
+    if (componentSelected != null) {
+
+
+      if (componentSelected.select == true) {
+        componentSelected.pos.x = mouseX/zoom;
+        componentSelected.pos.y = mouseY/zoom;
+      }
+    }
   }
 }

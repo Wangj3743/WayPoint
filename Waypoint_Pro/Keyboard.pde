@@ -17,10 +17,20 @@ void keyPressed() {
     
     
      else if (keyCode == BACKSPACE) {
+       if (componentSelected != null){
       if (componentSelected.select == true);
       compsList.remove(componentSelected);
         println(component_chosenText,"should be delted");
+       }
+        
+        
+if (trackSelected != null){        
+      if (trackSelected.select == true);
+      tracksList.remove(trackSelected);
+        println("track should be delted");
+        
     }
+     }
     
     
   
