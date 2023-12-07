@@ -19,16 +19,7 @@ void importProject(String[] fileImport) {
   // import components
   for (int i=indexComp+1; i<indexTrack; ++i) {
     String curr = fileImport[i];
-    int[] commas = new int[5];
-    
-    for (int j=0; j<5; ++j) {
-      if (j == 0) {
-        commas[j] = curr.indexOf(",");
-      }
-      else {
-        commas[j] = curr.indexOf(", ", commas[j-1]+1);
-      }
-    }
+    int[] commas = findCommas(curr, 5);
 
     String t = curr.substring(0, commas[0]); // type
     float v = float(curr.substring(commas[0]+2, commas[1]));  // comp value
@@ -42,16 +33,7 @@ void importProject(String[] fileImport) {
   // import tracks
   for (int i=indexTrack+1; i<fileImport.length; ++i) {
     String curr = fileImport[i];
-    int[] commas = new int[4];
-    
-    for (int j=0; j<4; ++j) {
-      if (j == 0) {
-        commas[j] = curr.indexOf(",");
-      }
-      else {
-        commas[j] = curr.indexOf(", ", commas[j-1]+1);
-      }
-    }
+    int[] commas = findCommas(curr, 4);
     
     float xPos1 = float(curr.substring(0, commas[0]));
     float yPos1 = float(curr.substring(commas[0]+2, commas[1]));
@@ -61,6 +43,7 @@ void importProject(String[] fileImport) {
     tracksList.add(new Track(xPos1, yPos1, xPos2, yPos2, sel));
   }
 }
+
 
 
 void screenshot(String format) { // exports what the user sees as an image
@@ -73,4 +56,19 @@ void screenshot(String format) { // exports what the user sees as an image
 void exportImage(String format) { // exports the user's entire workspace as an image
   zoom = 1;
   screenshot(format);
+}
+
+
+int[] findCommas(String curr, int numPara) {
+  int[] commas = new int[numPara];
+  
+  for (int j=0; j<numPara; ++j) {
+    if (j == 0) {
+      commas[j] = curr.indexOf(",");
+    }
+    else {
+      commas[j] = curr.indexOf(", ", commas[j-1]+1);
+    }
+  }
+  return commas;
 }
