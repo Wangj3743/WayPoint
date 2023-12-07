@@ -1,43 +1,43 @@
-void exportProject() {
+void exportProject(PrintWriter fileExport) {
   
   fileExport.close();
 }
 
 
 void importProject(String[] fileImport) {
-  int indexComp, indexTrack;
+  int indexComp = 0;
+  int indexTrack = 0;
   
-  for (int i; i<fileImport.length; ++i) {
-    if (fileImport[i] == "# COMPONENTS")
+  // find the sections in input.txt that denotes components and tracks
+  for (int i=0; i<fileImport.length; ++i) {
+    if (fileImport[i].equals("# COMPONENTS")) 
       indexComp = i;
-    else if (fileImport[i] == "# TRACKS")
+    else if (fileImport[i].equals("# TRACKS"))
       indexTrack = i;
   }
   
-  for (int i=indexComp; i<indexTrack; ++i) { //
+  // import components
+  for (int i=indexComp+1; i<indexTrack; ++i) {
     String curr = fileImport[i];
     int[] commas = new int[5];
     
-    for (int i; i<curr.length(); ++i) {
-      if (commas.length() != 0)
-        curr.indexOf(",", commas[i-1]);
+    for (int j=0; j<5; ++j) {
+      if (j == 0) {
+        commas[j] = curr.indexOf(",");
+      }
+      else {
+        commas[j] = curr.indexOf(", ", commas[j-1]+1);
+      }
     }
-    
-    String t = curr[0 : commas[0]]; // type
-    float v = curr[ ];  // value
-    float z = curr[ ];  // x value
-    float r = curr[ ];  // y value
-    float rota = curr[ ];  // rotate
-    boolean sel = curr[ ];  // select
-    
+
+    String t = curr.substring(0, commas[0]); // type
+    float v = float(curr.substring(commas[0]+2, commas[1]));  // comp value
+    float z = float(curr.substring(commas[1]+2, commas[2]));  // x value
+    float r = float(curr.substring(commas[2]+2, commas[3]));  // y value
+    float rota = float(curr.substring(commas[3]+2, commas[4]));  // rotate
+    boolean sel = boolean(curr.substring(commas[4]+2, curr.length()));  // select
     compsList.add(new Component(t, v, z, r, rota, sel));
   }
-  
-  for (int i=indexTrack; 0<fileImport.length; ++i) {
-    tracksList.add();
-  }
-  
-  compsList;
 }
 
 
