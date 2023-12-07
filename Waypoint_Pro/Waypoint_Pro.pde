@@ -49,11 +49,17 @@ Track trackSelected;
 Component componentSelected;
 Component component_chosen;
 String component_chosenText = "Battery";//default ;
+
+
 void setup() {
-  
   imageMode(CENTER);
   size(900, 900);
   shapeMode(CENTER);
+  String[] fileImport = loadStrings("input.txt");
+  PrintWriter fileExport = createWriter("output.txt");
+  
+  
+  importProject(fileImport);  // imports a file called 'input.txt'
 
 
   createGUI();
@@ -207,6 +213,7 @@ void mouseReleased() {
   temp_y1 = 0;
   temp_x2 = 0;
   temp_y2 = 0;
+  screenshot("png");
 }
 
 
