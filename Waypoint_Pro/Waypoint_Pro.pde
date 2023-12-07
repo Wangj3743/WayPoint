@@ -51,13 +51,18 @@ Track trackSelected;
 Component componentSelected;
 Component component_chosen;
 String component_chosenText = "Battery";//default ;
+
+
 void setup() {
-  scale(zoom);
-
-
   imageMode(CENTER);
   size(900, 900);
   shapeMode(CENTER);
+  String[] fileImport = loadStrings("input.txt");
+  PrintWriter fileExport = createWriter("output.txt");
+  
+  
+  importProject(fileImport);  // imports a file called 'input.txt'
+  //print(tracksList.size());
 
 
   createGUI();
@@ -97,7 +102,7 @@ void draw() {
       circle(i, j, gridDotSize);
     }
   }
-
+  
 
   //draw tracks
   for (Track T : tracksList) {
@@ -138,7 +143,6 @@ void draw() {
 
     temp_x2 = adj+(temp_x1);      // new x value of point 2
     temp_y2 = -opp+(temp_y1);    // new x value of point 2
-
     stroke(trackColor+255);
     strokeWeight(trackWeight);
     line(temp_x1, temp_y1, temp_x2, temp_y2); // preview line
@@ -212,13 +216,15 @@ void mouseReleased() {
   scale(zoom);
 
   if (createTrack == true) { // user selects to createTrack
-
-    tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack, trackColor));
+    if (temp_x2 != 0 && temp_y2 != 0) {
+      tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack));
+    } 
   }
   temp_x1 = 0;
   temp_y1 = 0;
   temp_x2 = 0;
   temp_y2 = 0;
+  screenshot("png");
 }
 
 

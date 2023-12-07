@@ -20,19 +20,17 @@ class Component {
 
     visible = true;
 //deselect after, rotate is always 0, 
-    if (type == "Battery") {
+    if (this.type.equals("Battery"))
       this.img = Battery;
-    }
-    if (type == "Resistor")
+    if (this.type.equals("Resistor"))
       this.img = Resistor;
-    if (type == "Capacitor") {
+    if (this.type.equals("Capacitor"))
       this.img = Capacitor;
-    }
-    if (type == "LED_Light")
+    if (this.type.equals("LED_Light"))
       this.img = LED_Light;
-    if (type == "Voltage_Regulator")
+    if (this.type.equals("Voltage_Regulator"))
       this.img = Voltage_Regulator;
-    if (type == "Transistor")
+    if (this.type.equals("Transistor"))
       this.img = Transistor;
   }
 

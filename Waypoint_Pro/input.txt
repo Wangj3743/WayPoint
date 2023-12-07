@@ -1,0 +1,6 @@
+# COMPONENTS
+Resistor, 220, 400, 400, 0, false
+Capacitor, 1000, 200, 200, 0, false
+# TRACKS
+0, 0, 100, 100, false
+200, 200, 300, 350, false
