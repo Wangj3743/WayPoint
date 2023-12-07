@@ -60,6 +60,7 @@ void setup() {
   
   
   importProject(fileImport);  // imports a file called 'input.txt'
+  //print(tracksList.size());
 
 
   createGUI();
@@ -99,7 +100,7 @@ void draw() {
       circle(i, j, gridDotSize);
     }
   }
-
+  
 
   //draw tracks
   for (Track T : tracksList) {

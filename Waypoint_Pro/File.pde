@@ -38,6 +38,28 @@ void importProject(String[] fileImport) {
     boolean sel = boolean(curr.substring(commas[4]+2, curr.length()));  // select
     compsList.add(new Component(t, v, z, r, rota, sel));
   }
+  
+  // import tracks
+  for (int i=indexTrack+1; i<fileImport.length; ++i) {
+    String curr = fileImport[i];
+    int[] commas = new int[4];
+    
+    for (int j=0; j<4; ++j) {
+      if (j == 0) {
+        commas[j] = curr.indexOf(",");
+      }
+      else {
+        commas[j] = curr.indexOf(", ", commas[j-1]+1);
+      }
+    }
+    
+    float xPos1 = float(curr.substring(0, commas[0]));
+    float yPos1 = float(curr.substring(commas[0]+2, commas[1]));
+    float xPos2 = float(curr.substring(commas[1]+2, commas[2]));
+    float yPos2 = float(curr.substring(commas[2]+2, commas[3]));
+    boolean sel = boolean(curr.substring(commas[3]+2, curr.length())); // select
+    tracksList.add(new Track(xPos1, yPos1, xPos2, yPos2, sel));
+  }
 }
 
 
