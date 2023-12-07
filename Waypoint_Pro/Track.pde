@@ -7,7 +7,7 @@ class Track {
   color col;
   
   // constructor
-  Track(float xPos1, float yPos1, float xPos2, float yPos2,boolean sel, color c) {
+  Track(float xPos1, float yPos1, float xPos2, float yPos2, boolean sel, color c) {
     this.x1 = xPos1;
     this.y1 = yPos1;
     this.x2 = xPos2;

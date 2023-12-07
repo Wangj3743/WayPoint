@@ -217,14 +217,13 @@ void mouseReleased() {
 
   if (createTrack == true) { // user selects to createTrack
     if (temp_x2 != 0 && temp_y2 != 0) {
-      tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack));
+      tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack, trackColor));
     } 
   }
   temp_x1 = 0;
   temp_y1 = 0;
   temp_x2 = 0;
   temp_y2 = 0;
-  screenshot("png");
 }
 
 

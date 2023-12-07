@@ -40,7 +40,7 @@ void importProject(String[] fileImport) {
     float xPos2 = float(curr.substring(commas[1]+2, commas[2]));
     float yPos2 = float(curr.substring(commas[2]+2, commas[3]));
     boolean sel = boolean(curr.substring(commas[3]+2, curr.length())); // select
-    tracksList.add(new Track(xPos1, yPos1, xPos2, yPos2, sel));
+    tracksList.add(new Track(xPos1, yPos1, xPos2, yPos2, sel, trackColor));
   }
 }
 
