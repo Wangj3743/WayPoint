@@ -18,29 +18,25 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 
 } //_CODE_:window1:369783:
 
-public void component_click(GButton source, GEvent event) { //_CODE_:component:692527:
-  println("component - GButton >> GEvent." + event + " @ " + millis());
+public void component_click(GButton source, GEvent event) { //_CODE_:component:692527:  println("component - GButton >> GEvent." + event + " @ " + millis());
   createTrack = false;
   createComponent = !createComponent;
   selectObject = false;
 } //_CODE_:component:692527:
 
-public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
-  println("track - GButton >> GEvent." + event + " @ " + millis());
+public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:  println("track - GButton >> GEvent." + event + " @ " + millis());
     createTrack = !createTrack;
   createComponent = false;
   selectObject = false;
 } //_CODE_:track:436593:
 
-public void button3_click1(GButton source, GEvent event) { //_CODE_:select:249474:
-  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+public void button3_click1(GButton source, GEvent event) { //_CODE_:select:249474:  println("button3 - GButton >> GEvent." + event + " @ " + millis());
     createTrack = false;
   createComponent = false;
   selectObject = !selectObject;
 } //_CODE_:select:249474:
 
-public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:
-  println("savebutton - GButton >> GEvent." + event + " @ " + millis());
+public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:  println("savebutton - GButton >> GEvent." + event + " @ " + millis());
    PrintWriter fileExport = createWriter("output.txt");
   exportProject(fileExport);
   fileExport.close();
@@ -50,31 +46,31 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:3
   
 } //_CODE_:savebutton:300975:
 
-public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945:
-  println("slider - GSlider >> GEvent." + event + " @ " + millis());
+public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945:  println("slider - GSlider >> GEvent." + event + " @ " + millis());
   zoom = slider.getValueF();
   
   
 } //_CODE_:slider:777945:
 
-public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:562215:
-  println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
+public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:562215:  println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
   print(textfield1.getText());
   tempVal = float(textfield1.getText());
 } //_CODE_:textfield1:562215:
 
-public void button1_click2(GButton source, GEvent event) { //_CODE_:showScreen:868154:
-  println("showScreen - GButton >> GEvent." + event + " @ " + millis());
+public void button1_click2(GButton source, GEvent event) { //_CODE_:showScreen:868154:  println("showScreen - GButton >> GEvent." + event + " @ " + millis());
   showSchematic = !showSchematic;
   print(showSchematic);
   
 } //_CODE_:showScreen:868154:
 
-public void button1_click3(GButton source, GEvent event) { //_CODE_:openSchematic:582783:
-  println("openSchematic - GButton >> GEvent." + event + " @ " + millis());
+public void button1_click3(GButton source, GEvent event) { //_CODE_:openSchematic:582783:  println("openSchematic - GButton >> GEvent." + event + " @ " + millis());
     selectInput("Select a file to process:", "fileSelected");
 
 } //_CODE_:openSchematic:582783:
+
+public void button1_click4(GButton source, GEvent event) { //_CODE_:screenshot:938354:  println("screenshot - GButton >> GEvent." + event + " @ " + millis());
+  screenshot("png");
+} //_CODE_:screenshot:938354:
 
 
 
@@ -115,6 +111,9 @@ public void createGUI(){
   openSchematic = new GButton(window1, 307, 41, 80, 30);
   openSchematic.setText("Open Schematic");
   openSchematic.addEventHandler(this, "button1_click3");
+  screenshot = new GButton(window1, 308, 104, 80, 30);
+  screenshot.setText("screenshot");
+  screenshot.addEventHandler(this, "button1_click4");
   window1.loop();
 }
 
@@ -129,3 +128,4 @@ GSlider slider;
 GTextField textfield1; 
 GButton showScreen; 
 GButton openSchematic; 
+GButton screenshot; 

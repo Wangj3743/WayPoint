@@ -1,3 +1,13 @@
+void fileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    schematic = loadImage(selection.getAbsolutePath());
+    println("User selected " + selection.getAbsolutePath());
+  }
+}
+
+
 void exportProject(PrintWriter fileExport) {
   
   fileExport.close();
@@ -53,10 +63,6 @@ void screenshot(String format) { // exports what the user sees as an image
 }
 
 
-void exportImage(String format) { // exports the user's entire workspace as an image
-  zoom = 1;
-  screenshot(format);
-}
 
 
 int[] findCommas(String curr, int numPara) {

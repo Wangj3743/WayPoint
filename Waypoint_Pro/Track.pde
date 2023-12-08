@@ -1,6 +1,6 @@
 class Track {
   // fields
-  float x1, y1, x2, y2;  
+  float x1, y1, x2, y2;  //position of the track
   boolean trackSelected = false;
   Node node1, node2;
   boolean select;
@@ -31,9 +31,6 @@ class Track {
     line(this.x1, this.y1, this.x2, this.y2);
   }
   
-  void changeColor() {
-    
-  }
   
   void deleteTrack() {
     node1.deleteNode();
