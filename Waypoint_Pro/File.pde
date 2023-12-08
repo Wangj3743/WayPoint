@@ -9,8 +9,32 @@ void fileSelected(File selection) {
 
 
 void exportProject(PrintWriter fileExport) {
+  // export components
+  fileExport.println("# COMPONENTS");
+  for (int i=0; i<compsList.size(); ++i) {
+    Component curr = compsList.get(i);
+    
+    String t = curr.type; // type
+    float v = curr.val;  // comp value
+    float z = curr.pos.x;  // x value
+    float r = curr.pos.y;  // y value
+    float rota = curr.rotation;  // rotate
+    boolean sel = curr.select;  // select
+    fileExport.println(t+", "+v+", "+z+", "+r+", "+rota+", "+sel);
+  }
   
-  fileExport.close();
+  // export tracks
+  fileExport.println("# TRACKS");
+  for (int i=0; i<tracksList.size(); ++i) {
+    Track curr = tracksList.get(i);
+    
+    float xPos1 = curr.x1;
+    float yPos1 = curr.y1;
+    float xPos2 = curr.x2;
+    float yPos2 = curr.y2;
+    boolean sel = curr.select; // select
+    fileExport.println(xPos1+", "+yPos1+", "+xPos2+", "+yPos2+", "+sel);
+  }
 }
 
 
