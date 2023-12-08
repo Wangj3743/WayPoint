@@ -41,11 +41,20 @@ public void button3_click1(GButton source, GEvent event) { //_CODE_:select:24947
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:
   println("savebutton - GButton >> GEvent." + event + " @ " + millis());
+   PrintWriter fileExport = createWriter("output.txt");
+  exportProject(fileExport);
+  fileExport.close();
+  
+  
+  
+  
 } //_CODE_:savebutton:300975:
 
 public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945:
   println("slider - GSlider >> GEvent." + event + " @ " + millis());
   zoom = slider.getValueF();
+  
+  
 } //_CODE_:slider:777945:
 
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:562215:
