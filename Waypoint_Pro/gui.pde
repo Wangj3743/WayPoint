@@ -19,7 +19,7 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 } //_CODE_:window1:369783:
 
 public void component_click(GButton source, GEvent event) { //_CODE_:component:692527:
- println("component - GButton >> GEvent." + event + " @ " + millis());
+ //println("component - GButton >> GEvent." + event + " @ " + millis());
   //turn on createComponent
   createTrack = false;
   createComponent = !createComponent;
@@ -27,7 +27,7 @@ public void component_click(GButton source, GEvent event) { //_CODE_:component:6
 } //_CODE_:component:692527:
 
 public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
- println("track - GButton >> GEvent." + event + " @ " + millis());
+ //println("track - GButton >> GEvent." + event + " @ " + millis());
  //turn on create Track
   createTrack = !createTrack;
   createComponent = false;
@@ -35,7 +35,7 @@ public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
 } //_CODE_:track:436593:
 
 public void button3_click1(GButton source, GEvent event) { //_CODE_:select:249474:
- println("button3 - GButton >> GEvent." + event + " @ " + millis());
+ //println("button3 - GButton >> GEvent." + event + " @ " + millis());
   //turn on select
   createTrack = false;
   createComponent = false;
@@ -43,7 +43,7 @@ public void button3_click1(GButton source, GEvent event) { //_CODE_:select:24947
 } //_CODE_:select:249474:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:
- println("savebutton - GButton >> GEvent." + event + " @ " + millis());
+ //println("savebutton - GButton >> GEvent." + event + " @ " + millis());
  //allow user to save their work
    PrintWriter fileExport = createWriter("output.txt");
   exportProject(fileExport);
@@ -55,7 +55,7 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:3
 } //_CODE_:savebutton:300975:
 
 public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945:
- println("slider - GSlider >> GEvent." + event + " @ " + millis());
+ //println("slider - GSlider >> GEvent." + event + " @ " + millis());
  //zomming in and out
   zoom = slider.getValueF();
   
@@ -63,26 +63,26 @@ public void slider_change(GSlider source, GEvent event) { //_CODE_:slider:777945
 } //_CODE_:slider:777945:
 
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:562215:
- println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
+ //println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
  //value input for the components
   tempVal = float(textfield1.getText());
 } //_CODE_:textfield1:562215:
 
 public void button1_click2(GButton source, GEvent event) { //_CODE_:showScreen:868154:
- println("showScreen - GButton >> GEvent." + event + " @ " + millis());
+ //println("showScreen - GButton >> GEvent." + event + " @ " + millis());
   showSchematic = !showSchematic;
-  print(showSchematic);
+  //print(showSchematic);
   
 } //_CODE_:showScreen:868154:
 
 public void button1_click3(GButton source, GEvent event) { //_CODE_:openSchematic:582783:
- println("openSchematic - GButton >> GEvent." + event + " @ " + millis());
+ //println("openSchematic - GButton >> GEvent." + event + " @ " + millis());
     selectInput("Select a file to process:", "schematicSelected");
 
 } //_CODE_:openSchematic:582783:
 
 public void button1_click4(GButton source, GEvent event) { //_CODE_:screenshot:938354:
- println("screenshot - GButton >> GEvent." + event + " @ " + millis());
+ //println("screenshot - GButton >> GEvent." + event + " @ " + millis());
   screenshot("png");
 } //_CODE_:screenshot:938354:
 
