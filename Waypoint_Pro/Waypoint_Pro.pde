@@ -89,10 +89,6 @@ void setup() {
   transistor.resize(magn*34, magn*12);
   resistor.resize(magn*25, magn*25);
   voltageRegulator.resize(magn*19, magn*23);
-  print(resistor);
-  
-
-
 }
 
 
@@ -111,8 +107,6 @@ void draw() {
 
   //draw components
   for (Component C : compsList) {
-    
-    print(resistor);
     C.drawComponent();
   }
   
