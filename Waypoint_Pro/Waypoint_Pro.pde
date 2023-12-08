@@ -70,19 +70,7 @@ void setup() {
   String[] fileImport = loadStrings("input.txt");
   PrintWriter fileExport = createWriter("output.txt");
   
-  
-  importProject(fileImport);  // imports a file called 'input.txt'
-  //print(tracksList.size());
-
-  
-  
   createGUI();
-  
-  
-  
-  
-  //open file
-  
   
   // path of component images
   Battery = loadImage("images/Battery.png");
@@ -102,7 +90,9 @@ void setup() {
   Resistor.resize(magn*25, magn*25);
   Voltage_Regulator.resize(magn*19, magn*23);
 
-  // remove for testing in the final version
+  importProject(fileImport);  // imports a file called 'input.txt'
+  //print(tracksList.size());
+  
   // component_chosen = new Component(component_chosenText, 0.0, float(mouseX),float(mouseY));
 }
 
