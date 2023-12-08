@@ -18,7 +18,7 @@ class Component {
     this.rotation = rota;
     this.select = sel;
 
-    //deselect after, rotate is always 0,
+    //pair the image up with the compoenent
     if (this.type.equals("battery"))
       this.img = battery;
     if (this.type.equals("resistor"))
@@ -32,28 +32,29 @@ class Component {
       this.img = voltageRegulator;
     if (this.type.equals("transistor")){
       this.img = transistor;}
-      println("new print",this.type);
+     
   }
 
 
   //methods
+  //preview the position and shape of component before permenetly drawing it on the canvs
   void previewComponent() {
-    imageMode(CENTER);
     image(this.img, this.pos.x, this.pos.y);
   }
   
-  void drawComponent() {
-    print("is img null", this.img);
-    imageMode(CENTER);
+  //draw the components on the canvas
+  void drawComponent() {   
     image(this.img, this.pos.x, this.pos.y);
     textSize(20);
     text(this.val, this.pos.x, this.pos.y);
 
+    //if the component is selected, put a circle in the middle to indicate
     if (this.select == true) {
       circle(this.pos.x, this.pos.y, 20);
     }
   }
 
+  //Allow the component to be dragged 
   void select() {
     this.pos.x = mouseX/zoom;
     this.pos.y = mouseY/zoom;

@@ -1,9 +1,18 @@
-void fileSelected(File selection) {
+void schematicSelected(File selection) {
   if (selection == null) {
     println("Window was closed or the user hit cancel.");
   } else {
     schematic = loadImage(selection.getAbsolutePath());
     println("User selected " + selection.getAbsolutePath());
+  }
+}
+
+void fileSelected(File fileselection) {
+  if (fileselection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    fileImp = loadStrings(fileselection.getAbsolutePath());
+    println("User selected " + fileselection.getAbsolutePath());
   }
 }
 

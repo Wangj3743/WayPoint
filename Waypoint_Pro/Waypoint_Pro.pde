@@ -15,6 +15,7 @@ String component_chosenText = "battery";//default component
 ArrayList<Track> tracksList = new ArrayList<Track> ();
 ArrayList<Component> compsList = new ArrayList<Component> ();
 String[] avaCompList = {"battery", "ledLight", "capacitor", "transistor", "resistor", "voltageRegulator"};
+String[] fileImp;
 
 // if user chooses to...
 boolean createTrack;
@@ -86,9 +87,7 @@ void setup() {
   voltageRegulator.resize(magn*19, magn*23);
   print(resistor);
   
-  
-    String[] fileImport = loadStrings("input.txt"); 
-  importProject(fileImport);  // imports a file called 'input.txt'
+
 
 }
 
