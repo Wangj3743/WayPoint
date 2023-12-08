@@ -1,3 +1,7 @@
+//Lucas S, Jim, Abid, Sunwoo
+//Waypoint Pro
+//2023-12-07
+
 // packages, libraries
 import g4p_controls.*;
 
