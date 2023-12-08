@@ -23,14 +23,16 @@ class Component {
       this.img = battery;
     if (this.type.equals("resistor"))
       this.img = resistor;
+
     if (this.type.equals("capacitor"))
       this.img = capacitor;
     if (this.type.equals("ledLight"))
       this.img = ledLight;
     if (this.type.equals("voltageRegulator"))
       this.img = voltageRegulator;
-    if (this.type.equals("transistor"))
-      this.img = transistor;
+    if (this.type.equals("transistor")){
+      this.img = transistor;}
+      println("new print",this.type);
   }
 
 
@@ -41,6 +43,7 @@ class Component {
   }
   
   void drawComponent() {
+    print("is img null", this.img);
     imageMode(CENTER);
     image(this.img, this.pos.x, this.pos.y);
     textSize(20);
