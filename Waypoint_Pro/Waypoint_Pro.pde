@@ -1,8 +1,6 @@
 // packages, libraries
 import g4p_controls.*;
 
-
-
 // editable variables
 float gridDotSpacing = 50;
 float gridDotSize = 2;
@@ -26,6 +24,8 @@ boolean createComponent;
 boolean selectObject;
 boolean selectComponent = false;
 boolean selectTrack = false;
+boolean showSchematic = false;
+boolean dragScreen = false;
 
 
 // temporary values
@@ -33,7 +33,15 @@ float temp_x1, temp_y1, temp_x2, temp_y2;
 int temp_int = 0;
 float zoom_sensitivity = 0.04;
 float zoom = 1;
+float wheelX;
+float wheelY;
+float dragX;
+float dragY;
+float iniDragX;
+float iniDragY;
 void mouseWheel(MouseEvent event) {
+  wheelX = mouseX;
+  wheelY = mouseY;
   zoom = (zoom - event.getCount()*zoom_sensitivity);
 }
 
@@ -46,21 +54,30 @@ PImage Voltage_Regulator;
 PImage Transistor;
 PImage Resistor;
 int magn;
+PImage Schematic;
 
 Track trackSelected;
 Component componentSelected;
 Component component_chosen;
 String component_chosenText = "Battery";//default ;
 void setup() {
-  scale(zoom);
+ 
 
 
   imageMode(CENTER);
   size(900, 900);
   shapeMode(CENTER);
 
-
+  
+  
   createGUI();
+  
+  
+  
+  
+  //open file
+  
+  
   // path of component images
   Battery = loadImage("images/Battery.png");
   LED_Light = loadImage("images/LED.png");
@@ -68,6 +85,7 @@ void setup() {
   Transistor = loadImage("images/Transistor.png");
   Resistor = loadImage("images/Resistor.png");
   Voltage_Regulator = loadImage("images/Voltage_Regulator.png");
+  Schematic = loadImage("Imported_Schematic/schematic1.png");
 
   // size of component images
   magn = 3;
@@ -84,10 +102,25 @@ void setup() {
 
 
 void draw() {
-  scale(zoom);
-
-  component_chosen = new Component(component_chosenText, tempVal, float(mouseX)/zoom, float(mouseY)/zoom, temp_rot, selectComponent);
   background(204);
+  
+  if (showSchematic == true){
+    print("it shoudl show");
+  image(Schematic,width/2.0,height/2.0);
+  }
+  
+   //translate(wheelX, wheelY);
+  scale(zoom);
+//translate(-wheelX, -wheelY);
+//translate(dragX,dragY);
+
+  component_chosen = new Component(component_chosenText, tempVal, float(mouseX)/zoom , float(mouseY)/zoom, temp_rot, selectComponent);
+  
+  
+  
+
+  
+ 
 
   // draw guide dots
   strokeWeight(1);
@@ -153,7 +186,15 @@ void draw() {
 
 void mousePressed() {
   scale(zoom);
-
+  
+  
+   if (createTrack == false && createComponent == false && selectObject == false){
+    dragScreen = true;
+    iniDragX = mouseX;
+    iniDragY = mouseY;
+    
+  }
+  
   if (createTrack == true) { // user selects to createTrack
     temp_x1 = mouseX/zoom;
     temp_y1 = mouseY/zoom;
@@ -210,7 +251,7 @@ void mousePressed() {
 
 void mouseReleased() {
   scale(zoom);
-
+dragScreen = false;
   if (createTrack == true) { // user selects to createTrack
 
     tracksList.add(new Track(temp_x1, temp_y1, temp_x2, temp_y2, selectTrack, trackColor));
@@ -223,8 +264,16 @@ void mouseReleased() {
 
 
 void mouseDragged() {
+  
   scale(zoom);
 
+  if (createTrack == false && createComponent == false && selectObject == false){
+    dragScreen = true;
+    dragX = mouseX- iniDragX;
+    dragY = mouseY- iniDragY;
+    
+    
+  }
   if (selectObject == true) {
 
     if (componentSelected != null) {
@@ -235,5 +284,16 @@ void mouseDragged() {
         componentSelected.pos.y = mouseY/zoom;
       }
     }
+  }
+}
+
+
+
+void fileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    Schematic = loadImage(selection.getAbsolutePath());
+    println("User selected " + selection.getAbsolutePath());
   }
 }

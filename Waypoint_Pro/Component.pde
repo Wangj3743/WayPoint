@@ -34,6 +34,7 @@ class Component {
       this.img = Voltage_Regulator;
     if (type == "Transistor")
       this.img = Transistor;
+
   }
 
 
@@ -42,14 +43,16 @@ class Component {
 
   //methods
   void previewComponent() {
+
      imageMode(CENTER);
      
   
-    image(this.img, mouseX/zoom, mouseY/zoom);
+    image(this.img, this.pos.x,this.pos.y);
      
     
   }
   void drawComponent() {
+
 
 
     if (visible = true) {

@@ -21,13 +21,13 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 public void component_click(GButton source, GEvent event) { //_CODE_:component:692527:
   println("component - GButton >> GEvent." + event + " @ " + millis());
   createTrack = false;
-  createComponent = true;
+  createComponent = !createComponent;
   selectObject = false;
 } //_CODE_:component:692527:
 
 public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
   println("track - GButton >> GEvent." + event + " @ " + millis());
-    createTrack = true;
+    createTrack = !createTrack;
   createComponent = false;
   selectObject = false;
 } //_CODE_:track:436593:
@@ -36,7 +36,7 @@ public void button3_click1(GButton source, GEvent event) { //_CODE_:select:24947
   println("button3 - GButton >> GEvent." + event + " @ " + millis());
     createTrack = false;
   createComponent = false;
-  selectObject = true;
+  selectObject = !selectObject;
 } //_CODE_:select:249474:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:
@@ -54,6 +54,19 @@ public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textf
   tempVal = float(textfield1.getText());
 } //_CODE_:textfield1:562215:
 
+public void button1_click2(GButton source, GEvent event) { //_CODE_:showScreen:868154:
+  println("showScreen - GButton >> GEvent." + event + " @ " + millis());
+  showSchematic = !showSchematic;
+  print(showSchematic);
+  
+} //_CODE_:showScreen:868154:
+
+public void button1_click3(GButton source, GEvent event) { //_CODE_:openSchematic:582783:
+  println("openSchematic - GButton >> GEvent." + event + " @ " + millis());
+    selectInput("Select a file to process:", "fileSelected");
+
+} //_CODE_:openSchematic:582783:
+
 
 
 // Create all the GUI controls. 
@@ -63,7 +76,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  window1 = GWindow.getWindow(this, "Window title", 0, 0, 300, 300, JAVA2D);
+  window1 = GWindow.getWindow(this, "WayPoint Pro Control ", 0, 0, 600, 300, JAVA2D);
   window1.noLoop();
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw1");
@@ -76,7 +89,7 @@ public void createGUI(){
   select = new GButton(window1, 38, 181, 80, 30);
   select.setText("select");
   select.addEventHandler(this, "button3_click1");
-  savebutton = new GButton(window1, 39, 251, 80, 30);
+  savebutton = new GButton(window1, 314, 182, 80, 30);
   savebutton.setText("save");
   savebutton.addEventHandler(this, "button1_click1");
   slider = new GSlider(window1, 162, 94, 100, 40, 10.0);
@@ -87,6 +100,12 @@ public void createGUI(){
   textfield1 = new GTextField(window1, 153, 172, 120, 30, G4P.SCROLLBARS_NONE);
   textfield1.setOpaque(true);
   textfield1.addEventHandler(this, "textfield1_change1");
+  showScreen = new GButton(window1, 168, 40, 80, 30);
+  showScreen.setText("Schematic");
+  showScreen.addEventHandler(this, "button1_click2");
+  openSchematic = new GButton(window1, 307, 41, 80, 30);
+  openSchematic.setText("Open Schematic");
+  openSchematic.addEventHandler(this, "button1_click3");
   window1.loop();
 }
 
@@ -99,3 +118,5 @@ GButton select;
 GButton savebutton; 
 GSlider slider; 
 GTextField textfield1; 
+GButton showScreen; 
+GButton openSchematic; 
