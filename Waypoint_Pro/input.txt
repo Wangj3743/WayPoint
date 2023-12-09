@@ -1,4 +1,0 @@
-# COMPONENTS
-battery, 0.0, 278.0, 259.0, 4.0, false
-battery, 0.0, 444.0, 427.0, 4.0, false
-# TRACKS
