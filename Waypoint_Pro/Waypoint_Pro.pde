@@ -4,6 +4,10 @@
 
 // packages, libraries
 import g4p_controls.*;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 
 // editable variables
 float gridDotSpacing = 50;  
@@ -67,6 +71,7 @@ Component component_chosen;
 
 
 void setup() {
+  
   size(900, 900);
   imageMode(CENTER);
   shapeMode(CENTER);
@@ -74,7 +79,7 @@ void setup() {
 
 
   // path of component images
-  battery = loadImage("images/battery.png");
+  battery = loadImage("images/Battery.png");
   ledLight = loadImage("images/LED.png");
   capacitor = loadImage("images/capacitor.png");
   transistor = loadImage("images/transistor.png");

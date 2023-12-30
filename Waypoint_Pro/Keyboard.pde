@@ -1,14 +1,21 @@
+
+
 void keyPressed() {
   if (key == CODED) {
     
     //switching between different component
     if (keyCode == UP) {
       temp_int = temp_int+1;
-      
+     
+  
+    
     } else if (keyCode == DOWN) {
       temp_int = temp_int-1;
+  
+    
     }
   }
+  
  
  //Delete component 
   else if (keyCode == BACKSPACE) {

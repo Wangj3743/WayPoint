@@ -23,6 +23,15 @@ public void component_click(GButton source, GEvent event) { //_CODE_:component:6
   createTrack = false;
   createComponent = !createComponent;
   selectObject = false;
+   try {
+      Robot robot = new Robot();
+      robot.keyPress(KeyEvent.VK_ALT);
+      robot.keyPress(KeyEvent.VK_TAB);
+      robot.keyRelease(KeyEvent.VK_TAB);
+      robot.keyRelease(KeyEvent.VK_ALT);
+    } catch (AWTException e) {
+      e.printStackTrace();
+    }
 } //_CODE_:component:692527:
 
 public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
@@ -119,6 +128,10 @@ public void createGUI(){
   screenshot = new GButton(window1, 321, 46, 80, 30);
   screenshot.setText("screenshot");
   screenshot.addEventHandler(this, "button1_click4");
+  label1 = new GLabel(window1, 149, 89, 80, 20);
+  label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label1.setText("Zoom");
+  label1.setOpaque(false);
   window1.loop();
 }
 
@@ -134,3 +147,4 @@ GTextField textfield1;
 GButton showScreen; 
 GButton openSchematic; 
 GButton screenshot; 
+GLabel label1; 
