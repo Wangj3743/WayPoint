@@ -23,15 +23,7 @@ public void component_click(GButton source, GEvent event) { //_CODE_:component:6
   createTrack = false;
   createComponent = !createComponent;
   selectObject = false;
-   try {
-      Robot robot = new Robot();
-      robot.keyPress(KeyEvent.VK_ALT);
-      robot.keyPress(KeyEvent.VK_TAB);
-      robot.keyRelease(KeyEvent.VK_TAB);
-      robot.keyRelease(KeyEvent.VK_ALT);
-    } catch (AWTException e) {
-      e.printStackTrace();
-    }
+  ((java.awt.Canvas)surface.getNative()).requestFocus();
 } //_CODE_:component:692527:
 
 public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
@@ -39,6 +31,8 @@ public void track_click(GButton source, GEvent event) { //_CODE_:track:436593:
   createTrack = !createTrack;
   createComponent = false;
   selectObject = false;
+  ((java.awt.Canvas)surface.getNative()).requestFocus();
+
 } //_CODE_:track:436593:
 
 public void button3_click1(GButton source, GEvent event) { //_CODE_:select:249474:
@@ -46,6 +40,8 @@ public void button3_click1(GButton source, GEvent event) { //_CODE_:select:24947
   createTrack = false;
   createComponent = false;
   selectObject = !selectObject;
+  ((java.awt.Canvas)surface.getNative()).requestFocus();
+
 } //_CODE_:select:249474:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:savebutton:300975:
