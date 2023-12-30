@@ -61,6 +61,7 @@ PImage resistor;
 PImage schematic;
 
 //Track Class
+float segments = PI/8;
 Track trackSelected;
 
 //Component Class
@@ -81,7 +82,7 @@ void setup() {
   // path of component images
   battery = loadImage("images/Battery.png");
   ledLight = loadImage("images/LED.png");
-  capacitor = loadImage("images/capacitor.png");
+  capacitor = loadImage("images/Capacitor.png");
   transistor = loadImage("images/transistor.png");
   resistor = loadImage("images/resistor.png");
   voltageRegulator = loadImage("images/voltageRegulator.png");
@@ -146,9 +147,9 @@ void draw() {
       theta = TWO_PI - RAA;
     }
 
-    int n = int(theta/(PI/8)); // number of 22.5 deg (PI/8 rad) segments the angle has passed
+    int n = int(theta/(segments)); // number of 22.5 deg (PI/8 rad) segments the angle has passed
     float drawnAngle;
-    drawnAngle = (n + n % 2) * (PI/8); // the number of 22.5 deg (PI/8 rad) segments that n is closest to, times PI/8 rad
+    drawnAngle = (n + n % 2) * (segments); // the number of 22.5 deg (PI/8 rad) segments that n is closest to, times PI/8 rad
 
     float opp = h*sin(drawnAngle);
     float adj = h*cos(drawnAngle);
